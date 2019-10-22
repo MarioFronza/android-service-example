@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GitHub</string>
+    <string name="add_user">Adicionar usuário</string>
+    <string name="user_name">Nome de usuário</string>
+    <string name="run_service">Processar lista</string>
+    <string name="stop_service">Parar processamento</string>
+</resources>
