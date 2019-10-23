@@ -1,4 +1,4 @@
-package br.udesc.ddm.service_example.service;
+package br.udesc.ddm.service_example.retrofit;
 
 
 import br.udesc.ddm.service_example.model.User;

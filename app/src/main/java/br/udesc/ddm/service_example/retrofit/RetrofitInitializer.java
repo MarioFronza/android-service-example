@@ -1,6 +1,5 @@
 package br.udesc.ddm.service_example.retrofit;
 
-import br.udesc.ddm.service_example.service.UserService;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
