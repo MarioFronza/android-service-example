@@ -51,7 +51,7 @@ public class MyService extends Service {
                     public void onResponse(Call<User> call, Response<User> response) {
                         if (response.isSuccessful()) {
                             User user = response.body();
-                            saveUser(user);
+                            serviceController.saveUser(user);
                         } else {
                             Toast.makeText(getApplicationContext(), "Falha na requisição", Toast.LENGTH_SHORT).show();
                         }
@@ -75,11 +75,7 @@ public class MyService extends Service {
         }
     }
 
-    public void saveUser(User user) {
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "database-name").build();
-        db.userDao().insert(user);
-    }
+
 
     @Override
     public void onCreate() {

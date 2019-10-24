@@ -17,6 +17,7 @@ public class ServiceController {
 
     private ArrayList<String> users;
     private List<Observer> observers;
+    private AppDatabase db;
 
     public static ServiceController getInstance() {
         if (instance == null) {
@@ -29,6 +30,10 @@ public class ServiceController {
     private ServiceController() {
         this.users = new ArrayList<>();
         this.observers = new ArrayList<>();
+    }
+
+    public void setContext(Context context) {
+        this.db = Room.databaseBuilder(context, AppDatabase.class, "users").allowMainThreadQueries().build();
     }
 
     public ArrayList<String> getUsers() {
@@ -54,7 +59,9 @@ public class ServiceController {
         }
     }
 
-
+    public void saveUser(User user) {
+        db.userDao().insertUser(user);
+    }
 
 
 }

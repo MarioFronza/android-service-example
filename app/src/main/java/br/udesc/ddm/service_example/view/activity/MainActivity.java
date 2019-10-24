@@ -12,7 +12,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import br.udesc.ddm.service_example.R;
 import br.udesc.ddm.service_example.controller.ServiceController;
@@ -39,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
 
         serviceController = ServiceController.getInstance();
         serviceController.addObserver(this);
+        serviceController.setContext(getApplicationContext());
 
 
         editTextName = findViewById(R.id.editTextUsername);
@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
             serviceController.addUser(name);
             editTextName.setText("");
         }
-
     }
 
     public void startService(View view) {
@@ -73,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
         } else {
             Toast.makeText(MainActivity.this, "Informe pelo menos um nome!", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     public void stopProcess(View view) {
@@ -82,10 +80,15 @@ public class MainActivity extends AppCompatActivity implements Observer {
         stopService(new Intent(this, MyService.class));
     }
 
+    public void viewUsers(View view) {
+        startActivity(new Intent(MainActivity.this, UsersActivity.class));
+    }
+
     @Override
     public void userListUpdate() {
         users = serviceController.getUsers();
         dataAdapter.notifyDataSetChanged();
+        usersList.requestLayout();
     }
 
 }

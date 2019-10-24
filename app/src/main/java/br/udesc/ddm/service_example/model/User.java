@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Entity
+@Entity(tableName = "users")
 public class User {
 
     @PrimaryKey
