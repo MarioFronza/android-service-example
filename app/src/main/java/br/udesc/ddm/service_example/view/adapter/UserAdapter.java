@@ -9,9 +9,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 import br.udesc.ddm.service_example.R;
+import br.udesc.ddm.service_example.helper.DownloadImageTask;
+import br.udesc.ddm.service_example.model.User;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> {
+
+    private List<User> users;
+
+    public UserAdapter(List<User> users) {
+        this.users = users;
+    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -36,13 +46,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.name.setText("Mário Fronza");
-        holder.login.setText("MarioFronza");
-        holder.avatar.setImageResource(R.drawable.ic_person_black_24dp);
+        holder.name.setText(users.get(position).getName());
+        holder.login.setText(users.get(position).getLogin());
+        new DownloadImageTask(holder.avatar).execute(users.get(position).getAvatar_url());
     }
 
     @Override
     public int getItemCount() {
-        return 6;
+        return users.size();
     }
+
+
 }

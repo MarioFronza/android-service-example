@@ -32,7 +32,7 @@ public class ServiceController {
         this.observers = new ArrayList<>();
     }
 
-    public void setContext(Context context) {
+    public void startDatabse(Context context) {
         this.db = Room.databaseBuilder(context, AppDatabase.class, "users").allowMainThreadQueries().build();
     }
 
@@ -61,6 +61,10 @@ public class ServiceController {
 
     public void saveUser(User user) {
         db.userDao().insertUser(user);
+    }
+
+    public List<User> getAllUsers() {
+        return db.userDao().getAllUsers();
     }
 
 

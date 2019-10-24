@@ -27,7 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class MyService extends Service {
+public class BackgroundUserService extends Service {
 
     private ArrayList<String> users;
     private ServiceController serviceController;
