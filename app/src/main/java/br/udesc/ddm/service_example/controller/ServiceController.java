@@ -40,12 +40,12 @@ public class ServiceController {
         return users;
     }
 
-    public void addUser(String name) {
+    public void addUserName(String name) {
         this.users.add(name);
         notifyUserListUpdate();
     }
 
-    public void removeUser(String name) {
+    public void removeUserName(String name) {
         this.users.remove(name);
     }
 

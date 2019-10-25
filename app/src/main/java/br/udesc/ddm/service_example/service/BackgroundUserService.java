@@ -36,11 +36,10 @@ public class BackgroundUserService extends Service {
         @Override
         public void handleMessage(Message msg) {
             Call<User> call;
-            int i = 0;
             while (!users.isEmpty() && isRunning) {
-                String name = users.remove(i);
+                String name = users.remove(0);
                 username = name;
-                serviceController.removeUser(name);
+                serviceController.removeUserName(name);
                 call = new RetrofitInitializer().getUserService().getUser(name);
                 call.enqueue(new retrofit2.Callback<User>() {
                     @Override
@@ -61,13 +60,12 @@ public class BackgroundUserService extends Service {
                     }
 
                 });
-
                 try {
                     Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
-                i++;
+
             }
             stopSelf(msg.arg1);
         }

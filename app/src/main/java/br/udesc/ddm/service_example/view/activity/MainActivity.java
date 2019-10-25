@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements Observer {
     public void addUser(View view) {
         String name = editTextName.getText().toString();
         if (!name.equals("")) {
-            serviceController.addUser(name);
+            serviceController.addUserName(name);
             editTextName.setText("");
         }
     }
