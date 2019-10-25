@@ -1,6 +1,7 @@
 package br.udesc.ddm.service_example.dao;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -17,5 +18,8 @@ public interface UserDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertUser(User user);
+
+    @Delete
+    void deleteUser(User user);
 
 }

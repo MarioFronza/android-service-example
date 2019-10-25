@@ -4,4 +4,8 @@ public interface Observer {
 
     void userListUpdate();
 
+    void showSuccessNotification(String username);
+
+    void showErrorNotification(String username);
+
 }

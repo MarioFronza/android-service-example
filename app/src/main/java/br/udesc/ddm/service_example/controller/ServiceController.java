@@ -49,6 +49,18 @@ public class ServiceController {
         this.users.remove(name);
     }
 
+    public void saveUser(User user) {
+        db.userDao().insertUser(user);
+    }
+
+    public void deleteUser(User user) {
+        db.userDao().deleteUser(user);
+    }
+
+    public List<User> getAllUsers() {
+        return db.userDao().getAllUsers();
+    }
+
     public void addObserver(Observer observer) {
         this.observers.add(observer);
     }
@@ -59,12 +71,16 @@ public class ServiceController {
         }
     }
 
-    public void saveUser(User user) {
-        db.userDao().insertUser(user);
+    public void notifyCreateUserSuccess(String username) {
+        for (Observer observer : observers) {
+            observer.showSuccessNotification(username);
+        }
     }
 
-    public List<User> getAllUsers() {
-        return db.userDao().getAllUsers();
+    public void notifyCreateUserError(String username) {
+        for (Observer observer : observers) {
+            observer.showErrorNotification(username);
+        }
     }
 
 

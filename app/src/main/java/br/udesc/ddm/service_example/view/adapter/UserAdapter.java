@@ -23,6 +23,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         this.users = users;
     }
 
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView name;

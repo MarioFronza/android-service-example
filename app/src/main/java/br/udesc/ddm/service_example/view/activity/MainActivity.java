@@ -8,7 +8,6 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -78,16 +77,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
     }
 
     public void startService(View view) {
-        Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
-                .setSmallIcon(R.drawable.ic_person_black_24dp)
-                .setContentTitle("teste")
-                .setContentText("teste de content text")
-                .setPriority(Notification.PRIORITY_HIGH)
-                .setCategory(Notification.CATEGORY_ALARM)
-                .build();
-
-        notificationManagerCompat.notify(1, notification);
-
         if (!users.isEmpty()) {
             startServiceButton.setVisibility(View.GONE);
             stopServiceButton.setVisibility(View.VISIBLE);
@@ -138,6 +127,32 @@ public class MainActivity extends AppCompatActivity implements Observer {
             manager.createNotificationChannel(channel2);
         }
 
+    }
+
+    @Override
+    public void showSuccessNotification(String username) {
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
+                .setSmallIcon(R.drawable.ic_person_black_24dp)
+                .setContentTitle("Usuário cadastrado")
+                .setContentText(username + " cadastrado com sucesso!")
+                .setPriority(Notification.PRIORITY_HIGH)
+                .setCategory(Notification.CATEGORY_ALARM)
+                .build();
+
+        notificationManagerCompat.notify(1, notification);
+    }
+
+    @Override
+    public void showErrorNotification(String username) {
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
+                .setSmallIcon(R.drawable.ic_person_black_24dp)
+                .setContentTitle("Erro ao cadastrar usuário")
+                .setContentText(username + " não encontrado!")
+                .setPriority(Notification.PRIORITY_HIGH)
+                .setCategory(Notification.CATEGORY_ALARM)
+                .build();
+
+        notificationManagerCompat.notify(1, notification);
     }
 
 }
